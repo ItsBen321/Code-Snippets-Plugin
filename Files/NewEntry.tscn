@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipemscochlkv"]
+
+[ext_resource type="Script" uid="uid://g8kcvtse4h0g" path="res://addons/Code_Snippets/Files/new_entry.gd" id="1_48msm"]
+
+[sub_resource type="GDScriptSyntaxHighlighter" id="GDScriptSyntaxHighlighter_cp1pf"]
+
+[node name="NewEntry" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48msm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -396.0
+offset_bottom = 31.0
+grow_horizontal = 0
+
+[node name="AddSnip" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Snip"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(350, 38)
+layout_mode = 2
+
+[node name="Window" type="Window" parent="."]
+title = "Save Snippet"
+initial_position = 2
+size = Vector2i(960, 540)
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="Window/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+minimap_draw = true
+syntax_highlighter = SubResource("GDScriptSyntaxHighlighter_cp1pf")
+draw_tabs = true
+code_completion_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="OptionButton" type="OptionButton" parent="Window/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Window/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Snippet Name"
+
+[node name="Save" type="Button" parent="Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[connection signal="pressed" from="HBoxContainer/AddSnip" to="." method="_on_add_snip_pressed"]
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]

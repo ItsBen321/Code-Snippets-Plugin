@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://cur1qlek871x2"]
+
+[ext_resource type="Script" uid="uid://byp6oy2rd8sow" path="res://addons/Code_Snippets/Files/dock.gd" id="1_pmglg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwcgp"]
+bg_color = Color(0.243137, 0.243137, 1, 1)
+
+[sub_resource type="GDScriptSyntaxHighlighter" id="GDScriptSyntaxHighlighter_iwcgp"]
+
+[node name="Scripts" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_pmglg")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/minimum_grab_thickness = 10
+theme_override_styles/split_bar_background = SubResource("StyleBoxFlat_iwcgp")
+
+[node name="TabContainer" type="TabContainer" parent="VSplitContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="VSplitContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="VSplitContainer/ScrollContainer2"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+syntax_highlighter = SubResource("GDScriptSyntaxHighlighter_iwcgp")
+draw_tabs = true
+structured_text_bidi_override = 2
+code_completion_enabled = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 31.0
+grow_vertical = 0
+text = ">"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
