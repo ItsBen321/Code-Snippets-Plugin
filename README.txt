@@ -1,5 +1,7 @@
 Welcome to Code Snippets!
 
+When installing, just put this in addons/, DONT make another folder, all important files will be contained in Code_Snippets/
+
 Watch this tutorial for a quick rundown:
 https://youtu.be/kFfqs1g9q64
 
